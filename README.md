@@ -1,6 +1,6 @@
 # Simulação de Monte Carlo com Apostas
 
-![Gráfico de Simulação de Monte Carlo](https://imgb.ifunny.co/images/a7db8851edc8b78890fe356a0e9db1f64f54e9f0764c9cabba7961d88b0e02d4_1.jpg)
+<p align=center> <img src="https://imgb.ifunny.co/images/a7db8851edc8b78890fe356a0e9db1f64f54e9f0764c9cabba7961d88b0e02d4_1.jpg" width=400 /> </p>
 
 Este projeto é uma simulação interativa que utiliza o método de Monte Carlo para modelar o resultado de apostas em um jogo. Ele permite que os usuários ajustem os parâmetros do jogo e visualizem os resultados em um gráfico em tempo real.
 
@@ -50,15 +50,11 @@ Estrutura do Código
 
 O código consiste nas seguintes funções principais:
 
-* monte_carlo(...): Simula o resultado de apostas com base nos parâmetros fornecidos e retorna a história de valores e o lucro total.
-
-* setup_sliders(): Configura os sliders de controle na interface gráfica para ajustar os parâmetros do jogo.
-
-* add_continuous_moving_regression(ax, history_value, window=10): Adiciona uma linha de regressão móvel contínua ao gráfico, para visualização de tendências.
-
-* update_graph(val, ax, sliders): Atualiza o gráfico de acordo com os valores dos sliders.
-
-* configure_plot_and_sliders(): Configura o gráfico e os sliders, iniciando a interface.
+* **monte_carlo(...)**: Simula o resultado de apostas com base nos parâmetros fornecidos e retorna a história de valores e o lucro total.
+* **setup_sliders()**: Configura os sliders de controle na interface gráfica para ajustar os parâmetros do jogo.
+* **add_continuous_moving_regression**(ax, history_value, window=10): Adiciona uma linha de regressão móvel contínua ao gráfico, para visualização de tendências.
+* **update_graph(val, ax, sliders)**: Atualiza o gráfico de acordo com os valores dos sliders.
+* **configure_plot_and_sliders()**: Configura o gráfico e os sliders, iniciando a interface.
 
 ## Contribuições
 
