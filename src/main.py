@@ -3,8 +3,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.widgets import Slider
 from scipy.stats import linregress
+from numba import jit
 
-
+@jit
 def monte_carlo(
         initial_value,
         bet_amount,
@@ -23,15 +24,13 @@ def monte_carlo(
     for _ in range(n_rounds):
         event_bet = round(random.random(), 2)
 
-        if event_bet > win_probability_x1:
-            now_value -= bet_amount
-        else:
-            if event_bet <= win_probability_x3:
-                now_value += bet_amount * multiplier_x3
-            elif event_bet <= win_probability_x2:
-                now_value += bet_amount * multiplier_x2
-            elif event_bet <= win_probability_x1:
-                now_value += bet_amount * multiplier_x1
+        #Metódo alternativo de if-se
+        now_value += (
+            -bet_amount if event_bet > win_probability_x1 else
+            bet_amount * multiplier_x3 if event_bet <= win_probability_x3 else
+            bet_amount * multiplier_x2 if event_bet <= win_probability_x2 else
+            bet_amount * multiplier_x1
+        )
 
         history_value.append(now_value)
 
@@ -82,12 +81,15 @@ def add_continuous_moving_regression(ax, history_value, window=10):
 def update_graph(val, ax, sliders):
     initial_value = sliders["s_initial_value"].val
     bet_amount = sliders["s_bet_amount"].val
+
     multiplier_x1 = sliders["s_multiplier_x1"].val
     multiplier_x2 = sliders["s_multiplier_x2"].val
     multiplier_x3 = sliders["s_multiplier_x3"].val
+
     win_probability_x1 = sliders["s_win_probability_x1"].val
     win_probability_x2 = sliders["s_win_probability_x2"].val
     win_probability_x3 = sliders["s_win_probability_x3"].val
+
     n_rounds = int(sliders["s_n_rounds"].val)
     n_users = int(sliders["s_n_users"].val)
 
